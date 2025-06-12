@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - Blossom Bloom</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header style="text-align:center; background:#d63384; color:white; padding:1rem;">
+    <h1>Checkout</h1>
+  </header>
+
+  <main class="checkout-container">
+    <form id="checkout-form">
+      <h2>Shipping Info</h2>
+      <label>Name</label>
+      <input type="text" required>
+
+      <label>Address</label>
+      <input type="text" required>
+
+      <label>City</label>
+      <input type="text" required>
+
+      <label>Postal Code</label>
+      <input type="text" required>
+
+      <h2>Payment Info</h2>
+      <label>Card Number</label>
+      <input type="text" required>
+
+      <label>Expiry Date</label>
+      <input type="text" placeholder="MM/YY" required>
+
+      <label>CVV</label>
+      <input type="text" required>
+
+      <button type="submit" class="btn checkout-btn">Place Order</button>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert("Thank you! Your order has been placed.");
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

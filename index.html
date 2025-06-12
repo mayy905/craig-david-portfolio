@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blossom Bloom - Flower Shop</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 🌸 Hero Header -->
+  <header class="home-header">
+    <div class="hero">
+      <h1>🌸 Blossom Bloom</h1>
+      <p>Delivering smiles with fresh flowers daily</p>
+      <a href="#shop" class="btn scroll-btn">Shop Now</a>
+    </div>
+  </header>
+
+  <!-- 🛍️ Shop Section -->
+  <main id="shop">
+    <h2 class="section-title">Our Fresh Picks</h2>
+
+    <!-- Product Listing -->
+    <section class="products">
+      <div class="product">
+        <img src="rose.jpg" alt="Roses">
+        <h2>Red Roses</h2>
+        <p>600ksh</p>
+        <button class="add-to-cart" data-name="Red Roses" data-price="15">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="tulip.jpg" alt="Tulips">
+        <h2>Tulips</h2>
+        <p>760ksh</p>
+        <button class="add-to-cart" data-name="Tulips" data-price="12">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="lily.jpg" alt="Lilies">
+        <h2>Lilies</h2>
+        <p>560ksh</p>
+        <button class="add-to-cart" data-name="Lilies" data-price="18">Add to Cart</button>
+      </div>
+      <div class="product">
+        <img src="sunflower.jpg" alt="Sunflowers">
+        <h2>Sunflowers</h2>
+        <p>270ksh</p>
+        <button class="add-to-cart" data-name="Sunflowers" data-price="10">Add to Cart</button>
+      </div>
+    </section>
+
+    <!-- 🛒 Cart Section -->
+    <section class="cart">
+      <h2>Your Cart</h2>
+      <ul id="cart-items"></ul>
+      <p class="total">Total: ksh<span id="total">0</span></p>
+      <a href="checkout.html" class="btn checkout-btn">Proceed to Checkout</a>
+    </section>
+  </main>
+
+  <!-- 🧠 Cart Logic -->
+  <script>
+    const cartItemsEl = document.getElementById("cart-items");
+    const totalEl = document.getElementById("total");
+    let cart = [];
+
+    function updateCart() {
+      cartItemsEl.innerHTML = "";
+      let total = 0;
+      cart.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          ${item.name} - $${item.price} 
+          <button onclick="removeFromCart(${index})">✖</button>
+        `;
+        cartItemsEl.appendChild(li);
+        total += item.price;
+      });
+      totalEl.textContent = total.toFixed(2);
+    }
+
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+    }
+
+    function removeFromCart(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const name = btn.dataset.name;
+        const price = parseFloat(btn.dataset.price);
+        addToCart(name, price);
+      });
+    });
+  </script>
+
+</body>
+</html>
